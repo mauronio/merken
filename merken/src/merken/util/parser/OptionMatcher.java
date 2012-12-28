@@ -1,14 +1,13 @@
+package merken.util.parser;
 import java.util.Map;
 
-import merken.util.parser.CharReader;
-import merken.util.parser.Matcher;
-import merken.util.parser.ParserException;
 
 
-public class SequenceMatcher extends Matcher<Boolean> {
+public class OptionMatcher extends Matcher<Boolean> {
 
 	Matcher[] matcherList;
-
+	boolean mandatory;
+	
 	@Override
 	public void initialize(CharReader reader, Map context) {
 		// TODO Auto-generated method stub
@@ -20,6 +19,7 @@ public class SequenceMatcher extends Matcher<Boolean> {
 
 	@Override
 	public Boolean eval() throws ParserException {
+		
 		Boolean result = false;
 		
 		for (int k=0; k<matcherList.length; k++) {
@@ -29,13 +29,23 @@ public class SequenceMatcher extends Matcher<Boolean> {
 			}
 		}
 
-		return result;
+		if (mandatory) {
+			return result;
+		} else {
+			return true;
+		}
 	}
 
-	public SequenceMatcher(Matcher[] matcherList) {
+	public OptionMatcher(Matcher[] matcherList) {
 		super();
 		this.matcherList = matcherList;
+		this.mandatory = true;
 	}
-	
-	
+
+	public OptionMatcher(Matcher[] matcherList, boolean mandatory) {
+		super();
+		this.matcherList = matcherList;
+		this.mandatory = mandatory;
+	}
+
 }
