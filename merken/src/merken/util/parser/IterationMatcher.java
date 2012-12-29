@@ -27,10 +27,10 @@ public class IterationMatcher extends Matcher<Boolean> {
 	}
 
 	@Override
-	public void initialize(CharReader reader, Map context) {
+	public void initialize(Environment env) {
 		// TODO Auto-generated method stub
-		super.initialize(reader, context);
-		iteratingMatcher.initialize(reader, context);
+		super.initialize(env);
+		iteratingMatcher.initialize(env);
 	}
 
 	public IterationMatcher(Matcher iteratingMatcher, int minOccurrences) {

@@ -7,9 +7,9 @@ public abstract class Matcher<T> {
 	protected CharReader reader;
 	protected Map context;
 	
-	public void initialize(CharReader reader, Map context) {
-		this.reader = reader;
-		this.context = context;
+	public void initialize(Environment env) {
+		this.reader = env.getReader();
+		this.context = env.getContext();
 	}
 
 	public T eval() throws ParserException {

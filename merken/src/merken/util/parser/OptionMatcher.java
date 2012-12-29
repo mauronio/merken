@@ -1,19 +1,17 @@
 package merken.util.parser;
 import java.util.Map;
 
-
-
 public class OptionMatcher extends Matcher<Boolean> {
 
 	Matcher[] matcherList;
 	boolean mandatory;
 	
 	@Override
-	public void initialize(CharReader reader, Map context) {
+	public void initialize(Environment env) {
 		// TODO Auto-generated method stub
-		super.initialize(reader, context);
+		super.initialize(env);
 		for (int k=0; k<matcherList.length; k++) {
-			matcherList[k].initialize(reader, context);
+			matcherList[k].initialize(env);
 		}
 	}
 
